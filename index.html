@@ -30,4 +30,156 @@
       .hero{grid-template-columns:1fr; padding:20px}
     }
 
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padd
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padding:28px; border-radius:16px; box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+    h1{font-size:clamp(28px,4vw,44px);margin:0 0 10px;line-height:1.05}
+    p.lead{color:var(--muted);margin:0 0 18px;font-size:16px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--accent);color:#111;padding:10px 16px;border-radius:10px;font-weight:600;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e6eef8}
+
+    /* Tiger panel */
+    .tiger-wrap{display:flex;align-items:center;justify-content:center;height:420px;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0b1226,#0d1628);border:1px solid rgba(255,255,255,0.04)}
+    @media (max-width:880px){.tiger-wrap{height:320px}}
+
+    /* SVG styling */
+    .tiger-svg{width:100%;height:100%;display:block}
+    .overlay-msg{position:relative;margin-top:14px;background:var(--glass);padding:10px 14px;border-radius:10px;color:#dcefff;font-weight:600;border:1px solid rgba(255,255,255,0.03);display:inline-block}
+
+    /* Content sections */
+    section{margin:36px 0;padding:28px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.03)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:880px){.grid-3{grid-template-columns:1fr}}
+    .card{padding:18px;background:var(--card);border-radius:12px}
+    .muted{color:var(--muted)}
+
+    footer{opacity:0.9;padding:18px;text-align:center;color:var(--muted)}
+
+    /* subtle animation */
+    .tiger-eye{transform-origin:50% 50%;animation:blink 6s infinite}
+    @keyframes blink{0%,3%,100%{transform:scaleY(1)}4%{transform:scaleY(0.12)}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-card">
+        <h1>与虎同行 — 保护我们的环境</h1>
+        <p class="lead">老虎不仅是丛林中的王者，也是生态系统健康的重要指示物。保护它们，就是保护我们共同的家园。</p>
+        <div class="cta-row">
+          <button class="btn" onclick="alert('感谢你的支持！')">立即参与</button>
+          <button class="btn ghost" onclick="document.getElementById('learn').scrollIntoView({behavior:'smooth'})">了解更多</button>
+        </div>
+
+        <div style="margin-top:20px;">
+          <span class="overlay-msg">小贴士：减少一次性塑料，保护野生动物栖息地。</span>
+        </div>
+      </div>
+
+      <div class="tiger-wrap" aria-hidden="true">
+        <!-- 手绘风格老虎 SVG（可替换为照片） -->
+        <svg class="tiger-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="一只面向观众的抽象老虎头像">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ffb86b"/>
+              <stop offset="100%" stop-color="#ff8b3d"/>
+            </linearGradient>
+            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="8" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- 背景光晕 -->
+          <circle cx="300" cy="260" r="220" fill="url(#g1)" opacity="0.10" filter="url(#f1)"/>
+
+          <!-- 头部轮廓 -->
+          <path d="M300 110 C220 110,160 180,150 270 C140 360,200 460,300 480 C400 460,460 360,450 270 C440 180,380 110,300 110 Z" fill="#ffb86b"/>
+
+          <!-- 暗影 -->
+          <path d="M300 110 C260 120,220 160,200 220 C190 260,200 300,220 340 C260 420,340 420,380 340 C400 300,410 260,400 220 C380 160,340 120,300 110 Z" fill="#ff8b3d" opacity="0.12"/>
+
+          <!-- 耳朵 -->
+          <path d="M190 150 C170 80,240 70,260 120" fill="#ff8b3d"/>
+          <path d="M410 150 C430 80,360 70,340 120" fill="#ff8b3d"/>
+
+          <!-- 眼睛（动画眨眼） -->
+          <g transform="translate(300,240)">
+            <ellipse class="tiger-eye" cx="-60" cy="-6" rx="28" ry="16" fill="#0b0f14"/>
+            <ellipse class="tiger-eye" cx="60" cy="-6" rx="28" ry="16" fill="#0b0f14"/>
+            <circle cx="-60" cy="-6" r="6" fill="#fff" opacity="0.9"/>
+            <circle cx="60" cy="-6" r="6" fill="#fff" opacity="0.9"/>
+          </g>
+
+          <!-- 鼻子和嘴 -->
+          <path d="M300 300 q-18 20 -6 30 q18 12 36 0 q12 -10 -6 -30" fill="#b84b2b"/>
+          <path d="M284 332 q16 8 32 0" stroke="#0b0f14" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- 条纹（抽象化） -->
+          <g fill="#0b0f14" opacity="0.95">
+            <path d="M230 170 q-40 30 -50 80" stroke="none"/>
+            <path d="M370 170 q40 30 50 80" stroke="none"/>
+            <path d="M260 210 q-30 24 -40 60"/>
+            <path d="M340 210 q30 24 40 60"/>
+            <path d="M300 160 q-8 40 -8 70"/>
+          </g>
+
+          <!-- 胡须 -->
+          <g stroke="#e9f6ff" stroke-width="2" stroke-linecap="round" opacity="0.9">
+            <path d="M220 340 q-40 8 -80 0" fill="none"/>
+            <path d="M380 340 q40 8 80 0" fill="none"/>
+          </g>
+
+        </svg>
+      </div>
+    </div>
+
+    <section id="learn">
+      <h2>为什么保护环境对老虎至关重要</h2>
+      <p class="muted">老虎的存续依赖完整且连贯的栖息地。森林的破碎化、偷猎、气候变化与污染都会直接影响其数量与生活质量。保护老虎意味着：</p>
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card">
+          <h3>生态平衡</h3>
+          <p class="muted">顶级捕食者能维持猎物种群的平衡，间接保护植被与水源。</p>
+        </div>
+        <div class="card">
+          <h3>生物多样性</h3>
+          <p class="muted">有老虎的地区通常拥有较高的物种多样性与生态完整性。</p>
+        </div>
+        <div class="card">
+          <h3>人类福祉</h3>
+          <p class="muted">健康的生态系统提供粮食、净水与气候调节，对人类社会至关重要。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>你可以做什么</h2>
+      <ul class="muted">
+        <li>减少一次性塑料、支持可持续产品。</li>
+        <li>支持并参与本地与国际保护组织的项目。</li>
+        <li>选择有环保认证的旅游与食品供应商，避免为非法野生动物贸易提供市场。</li>
+        <li>在社区推动植树与保护自然栖息地的活动。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div style="max-width:900px;margin:0 auto">
+        <strong>与虎同行</strong> — 小步改变，大大不同。 &nbsp; · &nbsp; <a href="#">联系我们</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // 简单渐显动画
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.hero-card, .tiger-wrap').forEach((el,i)=>{
+        el.style.opacity=0; el.style.transform='translateY(8px)';
+        setTimeout(()=>{el.style.transition='all 650ms cubic-bezier(.2,.9,.3,1)'; el.style.opacity=1; el.style.transform='translateY(0)';}, 120*i);
+      })
+    })
+  </script>
+</body>
+</html>
